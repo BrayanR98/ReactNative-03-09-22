@@ -14,20 +14,30 @@ export default function App() {
   let sumar = () => {
     setResultado(parseInt(valor1)+parseInt(valor2))
   }
-  let calcular = (props)=>{
+  let calcular = (oper)=>{
     let mresult=0;
     switch(oper){
       case '+':
-        mresult= parseFloat(valor1)-parseFloat(valor2)
+        mresult= parseFloat(valor1)+parseFloat(valor2)
         break;
       case '-':
-        mresult= parseFloat(valor1)+parseFloat(valor2)
+        mresult= parseFloat(valor1)-parseFloat(valor2)
         break;
       case '*':
         mresult= parseFloat(valor1)*parseFloat(valor2)
         break;
       case '/':
         mresult= parseFloat(valor1)/parseFloat(valor2)
+        break;
+      case '^':
+        mresult= parseFloat(valor1)**parseFloat(valor2)
+        break;
+      case 'r':
+        for(let i=0;i<parseFloat(valor1);i++){
+          if(i**valor2==valor1){
+            mresult= i
+          }
+          }     
         break;
     }
     setResultado(mresult)
@@ -46,14 +56,14 @@ export default function App() {
         style={{width:100,height:100}}/>
       <Text style={{fontSize:30,marginTop:10}}>Valor 1</Text>
       <TextInput
-        style={styles.textInputs}
+        style={styles.textInputs} keyboardType = 'numeric'
         placeholder='Ingrese el valor 1'
         onChangeText={valor1 => setValor1(valor1)}
         value ={valor1}/>
 
         <Text style={{fontSize:30}}>Valor 2</Text>
         <TextInput
-          style={styles.textInputs}
+          style={styles.textInputs} keyboardType = 'numeric'
           placeholder='Ingrese el valor 1'
           onChangeText={valor2 => setValor2(valor2)}
           value ={valor2}
@@ -89,6 +99,17 @@ export default function App() {
         </TouchableOpacity>
         <TouchableOpacity
         style={styles.Touchstile}
+        onPress={()=>calcular('^')}>
+          <Text style={styles.textoTouchable}>^</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+        style={styles.Touchstile}
+        onPress={()=>calcular('r')}>
+          <Image source={{uri:'https://th.bing.com/th/id/OIP.my1tyVbFsPJJK5HJZ5kwMgHaHa?pid=ImgDet&rs=1'}}
+          style={{width:30,height:20}}/>
+        </TouchableOpacity> 
+        <TouchableOpacity
+        style={styles.Touchstile}
         onPress={limpiar}>
           <Text style={styles.textoTouchable}>C</Text>
         </TouchableOpacity>
@@ -98,6 +119,7 @@ export default function App() {
       title='Sumar'
       onPress={sumar}
       />
+      <a href="https://www.flaticon.es/iconos-gratis/raiz-cuadrada" title="raíz cuadrada iconos">Raíz cuadrada iconos creados por IconsBox - Flaticon</a>
       <Text>{'\n'}</Text>
       <Button
       style={{width:'100%'}}

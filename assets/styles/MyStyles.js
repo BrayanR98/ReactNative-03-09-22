@@ -37,7 +37,8 @@ const styles = StyleSheet.create({
         backgroundColor:'green',
         padding:10,
         borderRadius:10,
-        marginLeft:5|
+        marginLeft:5
+
     },
     textoTouchable:{
         color:'white',
